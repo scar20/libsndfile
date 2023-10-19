@@ -23,8 +23,14 @@ string(REGEX REPLACE "([0-9]+\\.[0-9]+\\.[0-9]+).*" "\\1" LIB_VERSION ${PACKAGE_
 # Set the absolute source directory
 set(ABS_TOP_SRCDIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
+# Set the archive name
+set(ARCHIVE_NAME "libsndfile-testsuite-android-${TARGET_ARCHITECTURE}")
+
+# Set the tarball name
+set(TARBALL "${ARCHIVE_NAME}.tar.gz")
+
 # User definable device path to the test script - default to data/local/tmp
-set(DEVICE_TESTS_PATH "/data/local/tmp/sndfileTests")
+set(DEVICE_TESTS_PATH "/data/local/tmp/${ARCHIVE_NAME}/lib")
 
 set(MILESTONE_CONTENT [=[
 echo "----------------------------------------------------------------------"
@@ -190,11 +196,20 @@ target_include_directories (test_main
 		${CMAKE_CURRENT_BINARY_DIR}/tests
 	)
 target_link_libraries (test_main PRIVATE sndfile)
-if (MSVC)
-	target_compile_definitions (test_main PRIVATE _USE_MATH_DEFINES)
-endif ()
 add_android_test (test_main test_main)
 list(APPEND TEST_PROGRAMS_LIST tests/test_main)
+
+### sfversion_test
+
+add_executable (sfversion tests/sfversion.c)
+target_include_directories (sfversion
+	PRIVATE
+		src
+		${CMAKE_CURRENT_BINARY_DIR}/src
+	)
+target_link_libraries (sfversion sndfile)
+# No need to add this test to the command script as it is already done in the first segment
+list(APPEND TEST_PROGRAMS_LIST tests/sfversion)
 
 
 
@@ -221,11 +236,11 @@ set (SNDFILE_TEST_TARGETS
 		sfversion
 		)
 
-set_target_properties(${SNDFILE_TEST_TARGETS} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tests)
+set_target_properties(${SNDFILE_TEST_TARGETS} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "tests")
 
 
 # Add the test programs to the tarball
 add_custom_target(create_tarball
-    COMMAND ${CMAKE_COMMAND} -E tar "czf" ${TARBALL} ${TEST_PROGRAMS_LIST}
+    COMMAND ${CMAKE_COMMAND} -E tar "czf" ${TARBALL} ${TEST_PROGRAMS_LIST} "lib/libsndfile.so" "test_wrapper.sh"
     COMMENT "Creating tarball ${TARBALL}"
 )
