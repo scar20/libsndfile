@@ -428,6 +428,213 @@ list(APPEND TEST_PROGRAMS_LIST tests/pcm_test)
 
 add_milestone("passed common tests.")
 
+### common test executables
+
+add_executable (write_read_test
+tests/generate.c
+tests/write_read_test.c
+)
+target_link_libraries (write_read_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+target_include_directories (write_read_test PRIVATE tests)
+list(APPEND TEST_PROGRAMS_LIST tests/write_read_test)
+
+add_executable (lossy_comp_test tests/lossy_comp_test.c)
+target_link_libraries (lossy_comp_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/lossy_comp_test)
+
+add_executable (peak_chunk_test tests/peak_chunk_test.c)
+target_link_libraries (peak_chunk_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/peak_chunk_test)
+
+add_executable (header_test tests/header_test.c)
+target_link_libraries (header_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/header_test)
+
+add_executable (misc_test tests/misc_test.c)
+target_link_libraries (misc_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/misc_test)
+
+add_executable (string_test tests/string_test.c)
+target_link_libraries (string_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/string_test)
+
+add_executable (multi_file_test tests/multi_file_test.c)
+target_link_libraries (multi_file_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/multi_file_test)
+
+add_executable (aiff_rw_test tests/aiff_rw_test.c)
+target_link_libraries (aiff_rw_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/aiff_rw_test)
+
+add_executable (chunk_test tests/chunk_test.c)
+target_link_libraries (chunk_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/chunk_test)
+
+add_executable (long_read_write_test tests/long_read_write_test.c)
+target_link_libraries (long_read_write_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/long_read_write_test)
+
+add_executable (raw_test tests/raw_test.c)
+target_link_libraries (raw_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/raw_test)
+
+add_executable (compression_size_test tests/compression_size_test.c)
+target_link_libraries (compression_size_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/compression_size_test)
+
+add_executable (ogg_test tests/ogg_test.c)
+target_link_libraries (ogg_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/ogg_test)
+
+add_executable (ogg_opus_test tests/ogg_opus_test.c)
+target_link_libraries (ogg_opus_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/ogg_opus_test)
+
+add_executable (mpeg_test tests/mpeg_test.c)
+target_link_libraries (mpeg_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/mpeg_test)
+
+add_executable (stdin_test tests/stdin_test.c)
+target_link_libraries (stdin_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+set_target_properties (stdin_test PROPERTIES RUNTIME_OUTPUT_DIRECTORY "tests")
+list(APPEND TEST_PROGRAMS_LIST tests/stdin_test)
+
+add_executable (stdout_test tests/stdout_test.c)
+target_link_libraries (stdout_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+set_target_properties (stdout_test PROPERTIES RUNTIME_OUTPUT_DIRECTORY "tests")
+list(APPEND TEST_PROGRAMS_LIST tests/stdout_test)
+
+add_executable (stdio_test tests/stdio_test.c)
+target_link_libraries (stdio_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+list(APPEND TEST_PROGRAMS_LIST tests/stdio_test)
+
+add_executable (pipe_test tests/pipe_test.c)
+target_link_libraries (pipe_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+add_android_test (pipe_test pipe_test)
+
+add_executable (virtual_io_test tests/virtual_io_test.c)
+target_link_libraries (virtual_io_test
+PRIVATE
+	sndfile
+	test_utils
+	$<$<BOOL:${LIBM_REQUIRED}>:m>
+)
+add_android_test (virtual_io_test virtual_io_test)
+
+### g72x_test
+
+add_executable (g72x_test src/G72x/g72x_test.c)
+target_include_directories (g72x_test
+	PRIVATE
+		src
+		${CMAKE_CURRENT_BINARY_DIR}/src
+	)
+target_link_libraries (g72x_test
+	PRIVATE
+		sndfile
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (g72x_test g72x_test all)
+list(APPEND TEST_PROGRAMS_LIST src/G72x/g72x_test)
+add_milestone("passed G72x tests.")
+
+
+
 # Run the Python script and check result
 # As we don't have python on the target, we need to perform this test as we build the test suite
 file(GLOB BINHEADER_SOURCES "${ABS_TOP_SRCDIR}/src/*.c")
