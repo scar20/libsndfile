@@ -207,7 +207,7 @@ target_include_directories (test_main
 		${CMAKE_CURRENT_BINARY_DIR}/tests
 	)
 target_link_libraries (test_main PRIVATE sndfile)
-add_android_test (test_main test_main)
+add_android_test (test_main)
 list(APPEND TEST_PROGRAMS_LIST tests/test_main)
 
 ### sfversion_test
@@ -231,7 +231,7 @@ target_link_libraries (error_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (error_test error_test)
+add_android_test (error_test)
 list(APPEND TEST_PROGRAMS_LIST tests/error_test)
 
 ### ulaw_test
@@ -242,7 +242,7 @@ target_link_libraries (ulaw_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (ulaw_test ulaw_test)
+add_android_test (ulaw_test)
 list(APPEND TEST_PROGRAMS_LIST tests/ulaw_test)
 
 ### alaw_test
@@ -253,7 +253,7 @@ target_link_libraries (alaw_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (alaw_test alaw_test)
+add_android_test (alaw_test)
 list(APPEND TEST_PROGRAMS_LIST tests/alaw_test)
 
 ### dwvw_test
@@ -265,7 +265,7 @@ target_link_libraries (dwvw_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (dwvw_test dwvw_test)
+add_android_test (dwvw_test)
 list(APPEND TEST_PROGRAMS_LIST tests/dwvw_test)
 
 ### command_test
@@ -277,7 +277,7 @@ target_link_libraries (command_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (command_test command_test all)
+add_android_test_args (command_test all)
 list(APPEND TEST_PROGRAMS_LIST tests/command_test)
 
 ### floating_point_test
@@ -293,7 +293,7 @@ target_link_libraries (floating_point_test
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
 target_include_directories (floating_point_test PRIVATE tests)
-add_android_test (floating_point_test floating_point_test)
+add_android_test (floating_point_test)
 list(APPEND TEST_PROGRAMS_LIST tests/floating_point_test)
 
 ### checksum_test
@@ -305,7 +305,7 @@ target_link_libraries (checksum_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (checksum_test checksum_test)
+add_android_test (checksum_test)
 list(APPEND TEST_PROGRAMS_LIST tests/checksum_test)
 
 ### scale_clip_test
@@ -317,7 +317,7 @@ target_link_libraries (scale_clip_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (scale_clip_test scale_clip_test)
+add_android_test (scale_clip_test)
 list(APPEND TEST_PROGRAMS_LIST tests/scale_clip_test)
 
 ### headerless_test
@@ -329,7 +329,7 @@ target_link_libraries (headerless_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (headerless_test headerless_test)
+add_android_test (headerless_test)
 list(APPEND TEST_PROGRAMS_LIST tests/headerless_test)
 
 ### rdwr_test
@@ -341,7 +341,7 @@ target_link_libraries (rdwr_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (rdwr_test rdwr_test)
+add_android_test (rdwr_test)
 list(APPEND TEST_PROGRAMS_LIST tests/rdwr_test)
 
 ### locale_test
@@ -353,7 +353,7 @@ target_link_libraries (locale_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (locale_test locale_test)
+add_android_test (locale_test)
 list(APPEND TEST_PROGRAMS_LIST tests/locale_test)
 
 ### win32_ordinal_test
@@ -362,7 +362,7 @@ list(APPEND TEST_PROGRAMS_LIST tests/locale_test)
 #	if (WIN32 AND BUILD_SHARED_LIBS)
 #		add_executable (win32_ordinal_test tests/win32_ordinal_test.c)
 #		target_link_libraries (win32_ordinal_test PRIVATE sndfile test_utils)
-#		add_test (win32_ordinal_test win32_ordinal_test)
+#		add_android_test (win32_ordinal_test win32_ordinal_test)
 #	endif ()
 
 ### cpp_test
@@ -374,7 +374,7 @@ target_link_libraries (cpp_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (cpp_test cpp_test)
+add_android_test (cpp_test)
 list(APPEND TEST_PROGRAMS_LIST tests/cpp_test)
 
 ### external_libs_test
@@ -386,7 +386,7 @@ target_link_libraries (external_libs_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (external_libs_test external_libs_test)
+add_android_test (external_libs_test)
 list(APPEND TEST_PROGRAMS_LIST tests/external_libs_test)
 
 ### format_check_test
@@ -398,7 +398,7 @@ target_link_libraries (format_check_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (format_check_test format_check_test)
+add_android_test (format_check_test)
 list(APPEND TEST_PROGRAMS_LIST tests/format_check_test)
 
 ### channel_test
@@ -410,7 +410,7 @@ target_link_libraries (channel_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (channel_test channel_test)
+add_android_test (channel_test)
 list(APPEND TEST_PROGRAMS_LIST tests/channel_test)
 
 
@@ -423,7 +423,7 @@ target_link_libraries (pcm_test
 		test_utils
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (pcm_test pcm_test)
+add_android_test (pcm_test)
 list(APPEND TEST_PROGRAMS_LIST tests/pcm_test)
 
 add_milestone("passed common tests.")
@@ -605,7 +605,7 @@ PRIVATE
 	test_utils
 	$<$<BOOL:${LIBM_REQUIRED}>:m>
 )
-add_android_test (pipe_test pipe_test)
+list(APPEND TEST_PROGRAMS_LIST tests/pipe_test)
 
 add_executable (virtual_io_test tests/virtual_io_test.c)
 target_link_libraries (virtual_io_test
@@ -614,7 +614,7 @@ PRIVATE
 	test_utils
 	$<$<BOOL:${LIBM_REQUIRED}>:m>
 )
-add_android_test (virtual_io_test virtual_io_test)
+list(APPEND TEST_PROGRAMS_LIST tests/virtual_io_test)
 
 ### g72x_test
 
@@ -629,11 +629,219 @@ target_link_libraries (g72x_test
 		sndfile
 		$<$<BOOL:${LIBM_REQUIRED}>:m>
 	)
-add_android_test (g72x_test g72x_test all)
-list(APPEND TEST_PROGRAMS_LIST src/G72x/g72x_test)
-add_milestone("passed G72x tests.")
+add_android_test_args (g72x_test all)
+list(APPEND TEST_PROGRAMS_LIST tests/g72x_test)
+add_milestone("passed tests on G72x files.")
 
+### aiff-tests
 
+add_android_test_args (write_read_test aiff)
+add_android_test_args (lossy_comp_test aiff_ulaw)
+add_android_test_args (lossy_comp_test aiff_alaw)
+add_android_test_args (lossy_comp_test aiff_gsm610)
+add_android_test_args (peak_chunk_test aiff)
+add_android_test_args (header_test aiff)
+add_android_test_args (misc_test aiff)
+add_android_test_args (string_test aiff)
+add_android_test_args (multi_file_test aiff)
+add_android_test (aiff_rw_test)
+add_milestone("passed tests on AIFF files.")
+
+### au-tests
+
+add_android_test_args (write_read_test au)
+add_android_test_args (lossy_comp_test au_ulaw)
+add_android_test_args (lossy_comp_test au_alaw)
+add_android_test_args (lossy_comp_test au_g721)
+add_android_test_args (lossy_comp_test au_g723)
+add_android_test_args (header_test au)
+add_android_test_args (misc_test au)
+add_android_test_args (multi_file_test au)
+add_milestone("passed tests on AU files.")
+
+### caf-tests
+
+add_android_test_args (write_read_test caf)
+add_android_test_args (lossy_comp_test caf_ulaw)
+add_android_test_args (lossy_comp_test caf_alaw)
+add_android_test_args (header_test caf)
+add_android_test_args (peak_chunk_test caf)
+add_android_test_args (misc_test caf)
+add_android_test_args (chunk_test caf)
+add_android_test_args (string_test caf)
+add_android_test_args (long_read_write_test alac)
+add_milestone("passed tests on CAF files.")
+
+# wav-tests
+add_android_test_args (write_read_test wav)
+add_android_test_args (lossy_comp_test wav_pcm)
+add_android_test_args (lossy_comp_test wav_ima)
+add_android_test_args (lossy_comp_test wav_msadpcm)
+add_android_test_args (lossy_comp_test wav_ulaw)
+add_android_test_args (lossy_comp_test wav_alaw)
+add_android_test_args (lossy_comp_test wav_gsm610)
+add_android_test_args (lossy_comp_test wav_g721)
+add_android_test_args (lossy_comp_test wav_nmsadpcm)
+add_android_test_args (peak_chunk_test wav)
+add_android_test_args (header_test wav)
+add_android_test_args (misc_test wav)
+add_android_test_args (string_test wav)
+add_android_test_args (multi_file_test wav)
+add_android_test_args (chunk_test wav)
+add_milestone("passed tests on WAV files.")
+
+### w64-tests
+
+add_android_test_args (write_read_test w64)
+add_android_test_args (lossy_comp_test w64_ima)
+add_android_test_args (lossy_comp_test w64_msadpcm)
+add_android_test_args (lossy_comp_test w64_ulaw)
+add_android_test_args (lossy_comp_test w64_alaw)
+add_android_test_args (lossy_comp_test w64_gsm610)
+add_android_test_args (header_test w64)
+add_android_test_args (misc_test w64)
+add_milestone("passed tests on W64 files.")
+
+### rf64-tests
+
+add_android_test_args (write_read_test rf64)
+add_android_test_args (header_test rf64)
+add_android_test_args (misc_test rf64)
+add_android_test_args (string_test rf64)
+add_android_test_args (peak_chunk_test rf64)
+add_android_test_args (chunk_test rf64)
+add_milestone("passed tests on RF64 files.")
+
+### raw-tests
+add_android_test_args (write_read_test raw)
+add_android_test_args (lossy_comp_test raw_ulaw)
+add_android_test_args (lossy_comp_test raw_alaw)
+add_android_test_args (lossy_comp_test raw_gsm610)
+add_android_test_args (lossy_comp_test vox_adpcm)
+add_android_test (raw_test)
+add_milestone("passed tests on RAW files.")
+
+### paf-tests
+add_android_test_args (write_read_test paf)
+add_android_test_args (header_test paf)
+add_android_test_args (misc_test paf)
+add_milestone("passed tests on PAF files.")
+
+### svx-tests
+add_android_test_args (write_read_test svx)
+add_android_test_args (header_test svx)
+add_android_test_args (misc_test svx)
+add_milestone("passed tests on SVX files.")
+
+### nist-tests
+add_android_test_args (write_read_test nist)
+add_android_test_args (lossy_comp_test nist_ulaw)
+add_android_test_args (lossy_comp_test nist_alaw)
+add_android_test_args (header_test nist)
+add_android_test_args (misc_test nist)
+add_milestone("passed tests on NIST files.")
+
+### ircam-tests
+add_android_test_args (write_read_test ircam)
+add_android_test_args (lossy_comp_test ircam_ulaw)
+add_android_test_args (lossy_comp_test ircam_alaw)
+add_android_test_args (header_test ircam)
+add_android_test_args (misc_test ircam)
+add_milestone("passed tests on IRCAM files.")
+
+### voc-tests
+add_android_test_args (write_read_test voc)
+add_android_test_args (lossy_comp_test voc_ulaw)
+add_android_test_args (lossy_comp_test voc_alaw)
+add_android_test_args (header_test voc)
+add_android_test_args (misc_test voc)
+add_milestone("passed tests on VOC files.")
+
+### mat4-tests
+add_android_test_args (write_read_test mat4)
+add_android_test_args(header_test mat4)
+add_android_test_args (misc_test mat4)
+add_milestone("passed tests on MAT4 files.")
+
+### mat5-tests
+add_android_test_args (write_read_test mat5)
+add_android_test_args (header_test mat5)
+add_android_test_args (misc_test mat5)
+add_milestone("passed tests on MAT5 files.")
+
+### pvf-tests
+add_android_test_args (write_read_test pvf)
+add_android_test_args (header_test pvf)
+add_android_test_args (misc_test pvf)
+add_milestone("passed tests on PVF files.")
+
+### xi-tests
+add_android_test_args (lossy_comp_test xi_dpcm)
+add_milestone("passed tests on XI files.")
+
+### htk-tests
+add_android_test_args (write_read_test htk)
+add_android_test_args (header_test htk)
+add_android_test_args (misc_test htk)
+add_milestone("passed tests on HTK files.")
+
+### avr-tests
+add_android_test_args (write_read_test avr)
+add_android_test_args (header_test avr)
+add_android_test_args (misc_test avr)
+add_milestone("passed tests on AVR files.")
+
+### sds-tests
+add_android_test_args (write_read_test sds)
+add_android_test_args (header_test sds)
+add_android_test_args (misc_test sds)
+add_milestone("passed tests on SDS files.")
+
+# sd2-tests
+add_android_test_args (write_read_test sd2)
+add_milestone("passed tests on SD2 files.")
+
+### wve-tests
+add_android_test_args (lossy_comp_test wve)
+add_milestone("passed tests on WVE files.")
+
+### mpc2k-tests
+add_android_test_args (write_read_test mpc2k)
+add_android_test_args (header_test mpc2k)
+add_android_test_args (misc_test mpc2k)
+add_milestone("passed tests on MPC2K files.")
+
+### flac-tests
+add_android_test_args (write_read_test flac)
+add_android_test_args (compression_size_test flac)
+add_android_test_args (string_test flac)
+add_milestone("passed tests on FLAC files.")
+
+### vorbis-tests
+add_android_test (ogg_test)
+add_android_test_args (compression_size_test vorbis)
+add_android_test_args (lossy_comp_test ogg_vorbis)
+add_android_test_args (string_test ogg)
+add_android_test_args (misc_test ogg)
+add_milestone("passed tests on OGG/VORBIS files.")
+
+### opus-tests ###
+add_android_test (ogg_opus_test)
+add_android_test_args (compression_size_test opus)
+add_android_test_args (lossy_comp_test ogg_opus)
+add_android_test_args (string_test opus)
+add_milestone("passed tests on OPUS files.")
+
+### mpeg-tests ###
+add_android_test (mpeg_test)
+add_android_test_args (compression_size_test mpeg)
+add_milestone("passed tests on MPEG files.")
+
+### io-tests
+add_android_test (stdio_test)
+add_android_test (pipe_test)
+add_android_test (virtual_io_test)
+add_milestone("passed tests on stdio/pipe/vio tests.")
 
 # Run the Python script and check result
 # As we don't have python on the target, we need to perform this test as we build the test suite
@@ -659,6 +867,43 @@ set (SNDFILE_TEST_TARGETS
 		test_utils
 		test_main
 		sfversion
+		error_test
+		ulaw_test
+		alaw_test
+		dwvw_test
+		command_test
+		floating_point_test
+		checksum_test
+		scale_clip_test
+		headerless_test
+		rdwr_test
+		locale_test
+		cpp_test
+		external_libs_test
+		format_check_test
+		channel_test
+		pcm_test
+		write_read_test
+		lossy_comp_test
+		peak_chunk_test
+		header_test
+		misc_test
+		string_test
+		multi_file_test
+		aiff_rw_test
+		chunk_test
+		long_read_write_test
+		raw_test
+		compression_size_test
+		ogg_test
+		ogg_opus_test
+		mpeg_test
+		stdin_test
+		stdout_test
+		stdio_test
+		pipe_test
+		virtual_io_test
+		g72x_test
 		)
 
 set_target_properties(${SNDFILE_TEST_TARGETS} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "tests")
