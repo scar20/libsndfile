@@ -222,7 +222,211 @@ target_link_libraries (sfversion sndfile)
 # No need to add this test to the command script as it is already done in the first segment
 list(APPEND TEST_PROGRAMS_LIST tests/sfversion)
 
+### error_test
 
+add_executable (error_test tests/error_test.c)
+target_link_libraries (error_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (error_test error_test)
+list(APPEND TEST_PROGRAMS_LIST tests/error_test)
+
+### ulaw_test
+add_executable (ulaw_test tests/ulaw_test.c)
+target_link_libraries (ulaw_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (ulaw_test ulaw_test)
+list(APPEND TEST_PROGRAMS_LIST tests/ulaw_test)
+
+### alaw_test
+add_executable (alaw_test tests/alaw_test.c)
+target_link_libraries (alaw_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (alaw_test alaw_test)
+list(APPEND TEST_PROGRAMS_LIST tests/alaw_test)
+
+### dwvw_test
+
+add_executable (dwvw_test tests/dwvw_test.c)
+target_link_libraries (dwvw_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (dwvw_test dwvw_test)
+list(APPEND TEST_PROGRAMS_LIST tests/dwvw_test)
+
+### command_test
+
+add_executable (command_test tests/command_test.c)
+target_link_libraries (command_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (command_test command_test all)
+list(APPEND TEST_PROGRAMS_LIST tests/command_test)
+
+### floating_point_test
+
+add_executable (floating_point_test
+	tests/dft_cmp.c
+	tests/floating_point_test.c
+	)
+target_link_libraries (floating_point_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+target_include_directories (floating_point_test PRIVATE tests)
+add_android_test (floating_point_test floating_point_test)
+list(APPEND TEST_PROGRAMS_LIST tests/floating_point_test)
+
+### checksum_test
+
+add_executable (checksum_test tests/checksum_test.c)
+target_link_libraries (checksum_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (checksum_test checksum_test)
+list(APPEND TEST_PROGRAMS_LIST tests/checksum_test)
+
+### scale_clip_test
+
+add_executable (scale_clip_test tests/scale_clip_test.c)
+target_link_libraries (scale_clip_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (scale_clip_test scale_clip_test)
+list(APPEND TEST_PROGRAMS_LIST tests/scale_clip_test)
+
+### headerless_test
+
+add_executable (headerless_test tests/headerless_test.c)
+target_link_libraries (headerless_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (headerless_test headerless_test)
+list(APPEND TEST_PROGRAMS_LIST tests/headerless_test)
+
+### rdwr_test
+
+add_executable (rdwr_test tests/rdwr_test.c)
+target_link_libraries (rdwr_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (rdwr_test rdwr_test)
+list(APPEND TEST_PROGRAMS_LIST tests/rdwr_test)
+
+### locale_test
+
+add_executable (locale_test tests/locale_test.c)
+target_link_libraries (locale_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (locale_test locale_test)
+list(APPEND TEST_PROGRAMS_LIST tests/locale_test)
+
+### win32_ordinal_test
+
+# Disabled because we cannot test with shared sndfile library
+#	if (WIN32 AND BUILD_SHARED_LIBS)
+#		add_executable (win32_ordinal_test tests/win32_ordinal_test.c)
+#		target_link_libraries (win32_ordinal_test PRIVATE sndfile test_utils)
+#		add_test (win32_ordinal_test win32_ordinal_test)
+#	endif ()
+
+### cpp_test
+
+add_executable (cpp_test tests/cpp_test.cc)
+target_link_libraries (cpp_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (cpp_test cpp_test)
+list(APPEND TEST_PROGRAMS_LIST tests/cpp_test)
+
+### external_libs_test
+
+add_executable (external_libs_test tests/external_libs_test.c)
+target_link_libraries (external_libs_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (external_libs_test external_libs_test)
+list(APPEND TEST_PROGRAMS_LIST tests/external_libs_test)
+
+### format_check_test
+
+add_executable (format_check_test tests/format_check_test.c)
+target_link_libraries (format_check_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (format_check_test format_check_test)
+list(APPEND TEST_PROGRAMS_LIST tests/format_check_test)
+
+### channel_test
+
+add_executable (channel_test tests/channel_test.c)
+target_link_libraries (channel_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (channel_test channel_test)
+list(APPEND TEST_PROGRAMS_LIST tests/channel_test)
+
+
+### pcm_test
+
+add_executable (pcm_test tests/pcm_test.c)
+target_link_libraries (pcm_test
+	PRIVATE
+		sndfile
+		test_utils
+		$<$<BOOL:${LIBM_REQUIRED}>:m>
+	)
+add_android_test (pcm_test pcm_test)
+list(APPEND TEST_PROGRAMS_LIST tests/pcm_test)
+
+add_milestone("passed common tests.")
 
 # Run the Python script and check result
 # As we don't have python on the target, we need to perform this test as we build the test suite
