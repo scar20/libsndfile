@@ -261,9 +261,9 @@ zero_data_test (const char *filename, int format)
 static void
 filesystem_full_test (int format)
 {
-#if (defined (WIN32) || defined (_WIN32))
+#if (defined (WIN32) || defined (_WIN32) || defined (__ANDROID__))
 	(void) format ;
-	/* Can't run this test on Win32 so return. */
+	/* Can't run this test on Win32 or Android so return. */
 	return ;
 #else
 	SNDFILE		*file ;
