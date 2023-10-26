@@ -24,7 +24,9 @@ string(REGEX REPLACE "([0-9]+\\.[0-9]+\\.[0-9]+).*" "\\1" LIB_VERSION ${PACKAGE_
 set(ABS_TOP_SRCDIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Set the archive name
-set(ARCHIVE_NAME "libsndfile-testsuite-${TARGET_ARCHITECTURE}")
+if(NOT ARCHIVE_NAME)
+    set(ARCHIVE_NAME "libsndfile-testsuite-${TARGET_ARCHITECTURE}")
+endif()
 
 # Set the tarball name
 set(TARBALL "${ARCHIVE_NAME}.tar.gz")
@@ -911,7 +913,7 @@ set_target_properties(${SNDFILE_TEST_TARGETS} PROPERTIES RUNTIME_OUTPUT_DIRECTOR
 
 # Add the test programs to the tarball
 add_custom_target(create_tarball
-	COMMAND tar "czf" "${ARCHIVE_NAME}.tar.gz" --transform "s,^,${ARCHIVE_NAME}/," ${TEST_PROGRAMS_LIST} "${CMAKE_INSTALL_LIBDIR}/libsndfile.a" "test_wrapper.sh"
+	COMMAND tar "cvzf" "${ARCHIVE_NAME}.tar.gz" --transform "s,^,${ARCHIVE_NAME}/," ${TEST_PROGRAMS_LIST} "${CMAKE_INSTALL_LIBDIR}/libsndfile.a" "test_wrapper.sh"
     COMMENT "Creating tarball for testsuite"
 )
 
