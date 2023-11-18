@@ -1,23 +1,67 @@
 #!/bin/bash
 
-# Setting up environment
-export ANDROID_NDK_HOME=/opt/android-ndk-r25c
-export PATH=$PATH:$ANDROID_NDK_HOME
+# This script will build opus for Android using the NDK
+# It can be run alone or from the master 'build_extlibs.sh' script
 
-# Navigate to opus library source directory
-cd ~/Repository/opus
+# Ensure all library sources are within a top-level directory.
+# Place and run this script from within that top-level directory.
+# It will generate build directories for each ABI/configuration in opus subdirectory.
+# Build directory name: build_<abi> for release and build_<abi>_d for debug
+
+# ------- User configuration ------- #
+
+# set to your NDK root location : "path/to/android-ndk-your_version_number"
+ANDROID_NDK_ROOT=""
+
+# Minimum API level supported by the NDK - adjust according to your project min sdk
+# ex: api_min="android-21"
+api_min=""
+
 # Lists of ABIs and configurations
+# Adjust as needed from those values:
+# ABI_LIST=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
+# CONFIG_LIST=("Debug" "Release")
 abi_list=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
 config_list=("Debug" "Release")
-#abi_list=("arm64-v8a")
-#config_list=("Debug")
 
-# Flags for C and C++ compilers
-c_flags=""
-cxx_flags=""
+# ------- End of user configuration ------- #
 
-# opus library build directory name - build_<abi> for release and build_<abi>_d for debug
-build_dir=""
+
+# Set from outside variables or default to user settings
+ANDROID_NDK_HOME=${ANDROID_NDK_HOME:-$ANDROID_NDK_ROOT}
+api_min=${API_MIN:-$api_min}
+
+# Check if ANDROID_NDK_HOME and api_min are set
+if [ -z "$ANDROID_NDK_HOME" ]; then
+	echo "Error: ANDROID_NDK_ROOT must be set"
+	exit 1
+elif [ -z "$api_min" ]; then
+	echo "Error: api_min must be set"
+	exit 1
+fi
+
+# Set from outside variables or use provided default
+android_toolchain="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
+toolchain=${ANDROID_TOOLCHAIN:-$android_toolchain}
+
+# If ABI_LIST and CONFIG_LIST are set, copy into their conterpart variables
+if [ -n "${ABI_LIST+1}" ]; then
+    abi_list=("${ABI_LIST[@]}")
+fi
+if [ -n "${CONFIG_LIST+1}" ]; then
+    config_list=("${CONFIG_LIST[@]}")
+fi
+
+
+# We should be in the top-level dir where all the libraries are located
+ROOT_LOC=$(pwd)
+
+# Set lib root locations
+opus_root=$(echo ${ROOT_LOC}/opus*)
+
+# Navigate to OGG library source directory
+cd "${opus_root}" || exit
+
 
 # Create a build directory for each ABI and configuration
 for abi in "${abi_list[@]}"; do
@@ -38,21 +82,19 @@ for abi in "${abi_list[@]}"; do
         cd ${build_dir}
         
         # CMake command with Android toolchain and relevant flags
-        cmake .. -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                 -DANDROID_ABI=${abi} \
-                 -DANDROID_PLATFORM=android-21 \
-                 -DCMAKE_BUILD_TYPE=${config} \
+        cmake .. -DCMAKE_TOOLCHAIN_FILE="${toolchain}" \
+                 -DANDROID_ABI="${abi}" \
+                 -DANDROID_PLATFORM="${api_min}" \
+                 -DCMAKE_BUILD_TYPE="${config}" \
                  -DCMAKE_C_FLAGS="${c_flags}" \
                  -DCMAKE_CXX_FLAGS="${cxx_flags}" \
-                 -DCMAKE_INSTALL_PREFIX=/home/scar/Repository/opus/${build_dir}
+                 -DCMAKE_INSTALL_PREFIX=${opus_root}/${build_dir}
                  #-DOPUS_BUILD_TESTING=ON
      
         # Build library
-        #make
         cmake --build .
         
         # Install library and headers
-        #make install
         cmake --install .
         
         # Navigate back to the library source directory
@@ -60,3 +102,5 @@ for abi in "${abi_list[@]}"; do
     done
 done
 
+# Navigate back to the top level directory
+cd ..

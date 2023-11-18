@@ -17,7 +17,7 @@ ANDROID_NDK_HOME="/opt/android-ndk-r25c"
 API_MIN="android-21"
 
 # Lists of ABIs and configurations
-# Adjust as needed
+# Adjust as needed from those values:
 # ABI_LIST=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
 # CONFIG_LIST=("Debug" "Release")
 ABI_LIST=("armeabi-v7a" "arm64-v8a")
@@ -38,4 +38,9 @@ fi
 ANDROID_TOOLCHAIN="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
 
 source ./build_libogg.sh
-#.... other build
+source ./build_libvorbis.sh
+source ./build_libopus.sh
+source ./build_libsndfile.sh
+source ./build_libflac.sh
+source ./build_libmpg123.sh
+source ./build_libmp3lame.sh
