@@ -61,7 +61,7 @@ flac_root=$(echo ${ROOT_LOC}/flac*)
 ogg_root=$(echo ${ROOT_LOC}/libogg*)
 
 
-# Navigate to OGG library source directory
+# Navigate to FLAC library source directory
 cd "${flac_root}" || exit
 
 

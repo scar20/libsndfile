@@ -59,7 +59,7 @@ ROOT_LOC=$(pwd)
 # Set lib root locations
 opus_root=$(echo ${ROOT_LOC}/opus*)
 
-# Navigate to OGG library source directory
+# Navigate to opus library source directory
 cd "${opus_root}" || exit
 
 

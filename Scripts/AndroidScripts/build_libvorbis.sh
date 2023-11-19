@@ -61,7 +61,7 @@ vorbis_root=$(echo ${ROOT_LOC}/libvorbis*)
 ogg_root=$(echo ${ROOT_LOC}/libogg*)
 
 
-# Navigate to OGG library source directory
+# Navigate to libvorbis library source directory
 cd "${vorbis_root}" || exit
 
 

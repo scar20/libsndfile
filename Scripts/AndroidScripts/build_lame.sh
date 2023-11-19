@@ -59,7 +59,7 @@ ROOT_LOC=$(pwd)
 # Set lib root locations
 lame_root=$(echo ${ROOT_LOC}/lame*)
 
-# Navigate to OGG library source directory
+# Navigate to lame library source directory
 cd "${lame_root}" || exit
 
 # We need to apply a patch to the lib for the android build

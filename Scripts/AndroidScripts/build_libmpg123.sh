@@ -62,7 +62,7 @@ ROOT_LOC=$(pwd)
 # Set lib root locations
 mpg123_root=$(echo ${ROOT_LOC}/mpg123*)
 
-# Navigate to OGG library source directory
+# Navigate to mpg123 library source directory
 cd "${mpg123_root}" || exit
 
 # Enabing debug message
