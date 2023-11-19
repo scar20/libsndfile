@@ -62,6 +62,9 @@ lame_root=$(echo ${ROOT_LOC}/lame*)
 # Navigate to OGG library source directory
 cd "${lame_root}" || exit
 
+# We need to apply a patch to the lib for the android build
+patch --forward -p0 < ../android-lame.patch || true
+
 
 # Additional variables
 
@@ -71,8 +74,8 @@ export HOST_TAG=linux-x86_64
 export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/$HOST_TAG
 SYSROOT=$NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot
 
-# Set API to minSdkVersion
-export API=$api_min
+# Set API to minSdkVersion from numerial value of api_min
+export API=$(echo $api_min | grep -o '[0-9]*')
 
 # Type sizes for x86 and arm32
 TYPE_DEFINES_32="-DSIZEOF_SHORT=2 \
