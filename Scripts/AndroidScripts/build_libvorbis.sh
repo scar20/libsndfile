@@ -24,6 +24,10 @@ api_min=""
 abi_list=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
 config_list=("Debug" "Release")
 
+# Set to "ON" to enable precompiled lib
+# A precompiled_libs directory will be created in the top-level directory
+generate_precompiled_lib="OFF"
+
 # ------- End of user configuration ------- #
 
 
@@ -52,6 +56,8 @@ if [ -n "${CONFIG_LIST+1}" ]; then
     config_list=("${CONFIG_LIST[@]}")
 fi
 
+# Override from master script or use default
+GENERATE_PRECOMPILED_LIBS=${GENERATE_PRECOMPILED_LIBS:-$generate_precompiled_lib}
 
 # We should be in the top-level dir where all the libraries are located
 ROOT_LOC=$(pwd)
@@ -104,6 +110,29 @@ for abi in "${abi_list[@]}"; do
        cd ..
     done
 done
+
+# Copy the static library to the precompiled_libs directory if enabled
+if [ "$GENERATE_PRECOMPILED_LIBS" = "ON" ]; then
+    DEST=$ROOT_LOC/precompiled_libs/libvorbis
+    mkdir -p $DEST
+    for abi in "${abi_list[@]}"; do
+        for config in "${config_list[@]}"; do
+            # Conditionally set build directory name
+            if [ "$config" = "Debug" ]; then
+                BUILD_DIR="build_${abi}_d"
+            else
+                BUILD_DIR="build_${abi}"
+            fi
+            
+            mkdir -p $DEST/$BUILD_DIR/lib          
+            cp $vorbis_root/$BUILD_DIR/lib/libvorbis.a $DEST/$BUILD_DIR/lib/libvorbis.a
+            cp $vorbis_root/$BUILD_DIR/lib/libvorbisenc.a $DEST/$BUILD_DIR/lib/libvorbisenc.a
+            cp $vorbis_root/$BUILD_DIR/lib/libvorbisfile.a $DEST/$BUILD_DIR/lib/libvorbisfile.a
+            cp -r $vorbis_root/$BUILD_DIR/include $DEST/$BUILD_DIR/include
+        done
+        cp $(pwd)/COPYING $DEST/COPYING
+    done
+fi
 
 # Navigate back to the top level directory
 cd ..

@@ -23,6 +23,10 @@ API_MIN="android-21"
 ABI_LIST=("armeabi-v7a" "arm64-v8a")
 CONFIG_LIST=("Debug" "Release")
 
+# Set to "ON" to enable precompiled libs
+# A precompiled_libs directory will be created in the top-level directory
+GENERATE_PRECOMPILED_LIBS="OFF"
+
 # ------- End of user configuration ------- #
 
 # Check if ANDROID_NDK_HOME and API_MIN are set
