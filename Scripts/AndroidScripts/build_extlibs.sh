@@ -10,17 +10,17 @@
 # ------- User configuration ------- #
 
 # set to your NDK root location : "path/to/android-ndk-<your_version_number>"
-ANDROID_NDK_HOME="/opt/android-ndk-r25c"
+ANDROID_NDK_HOME=""
 
 # Minimum API level supported by the NDK - adjust according to your project min sdk
 # ex: API_MIN="android-21"
-API_MIN="android-21"
+API_MIN=""
 
 # Lists of ABIs and configurations
 # Adjust as needed from those values:
 # ABI_LIST=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
 # CONFIG_LIST=("Debug" "Release")
-ABI_LIST=("armeabi-v7a" "arm64-v8a")
+ABI_LIST=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
 CONFIG_LIST=("Debug" "Release")
 
 # Set to "ON" to enable precompiled libs
@@ -44,7 +44,6 @@ ANDROID_TOOLCHAIN="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
 source ./build_libogg.sh
 source ./build_libvorbis.sh
 source ./build_libopus.sh
-source ./build_libsndfile.sh
 source ./build_libflac.sh
 source ./build_libmpg123.sh
-source ./build_libmp3lame.sh
+source ./build_lame.sh
