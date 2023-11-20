@@ -136,8 +136,8 @@ if [ "$GENERATE_PRECOMPILED_LIBS" = "ON" ]; then
             cp $mpg123_root/$BUILD_DIR/lib/libsyn123.a $DEST/$BUILD_DIR/lib/libsyn123.a
             cp -r $mpg123_root/$BUILD_DIR/include $DEST/$BUILD_DIR/include
         done
-        cp $(pwd)/COPYING $DEST/COPYING
     done
+    cp $(pwd)/COPYING $DEST/COPYING
 fi
 
 # Navigate back to the top level directory

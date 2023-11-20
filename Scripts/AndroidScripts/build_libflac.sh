@@ -135,10 +135,10 @@ if [ "$GENERATE_PRECOMPILED_LIBS" = "ON" ]; then
             cp $flac_root/$BUILD_DIR/lib/libFLAC++.a $DEST/$BUILD_DIR/lib/libFLAC++.a
             cp -r $flac_root/$BUILD_DIR/include $DEST/$BUILD_DIR/include
         done
-        cp $(pwd)/COPYING.GPL $DEST/COPYING.GPL
-        cp $(pwd)/COPYING.LGPL $DEST/COPYING.LGPL
-        cp $(pwd)/COPYING.Xiph $DEST/COPYING.Xiph
     done
+    cp $(pwd)/COPYING.GPL $DEST/COPYING.GPL
+    cp $(pwd)/COPYING.LGPL $DEST/COPYING.LGPL
+    cp $(pwd)/COPYING.Xiph $DEST/COPYING.Xiph
 fi
 
 # Navigate back to the top level directory

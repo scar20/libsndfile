@@ -130,8 +130,8 @@ if [ "$GENERATE_PRECOMPILED_LIBS" = "ON" ]; then
             cp $vorbis_root/$BUILD_DIR/lib/libvorbisfile.a $DEST/$BUILD_DIR/lib/libvorbisfile.a
             cp -r $vorbis_root/$BUILD_DIR/include $DEST/$BUILD_DIR/include
         done
-        cp $(pwd)/COPYING $DEST/COPYING
     done
+    cp $(pwd)/COPYING $DEST/COPYING
 fi
 
 # Navigate back to the top level directory

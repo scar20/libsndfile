@@ -125,8 +125,8 @@ if [ "$GENERATE_PRECOMPILED_LIBS" = "ON" ]; then
             cp $opus_root/$BUILD_DIR/lib/libopus.a $DEST/$BUILD_DIR/lib/libopus.a
             cp -r $opus_root/$BUILD_DIR/include $DEST/$BUILD_DIR/include
         done
-        cp $(pwd)/COPYING $DEST/COPYING
     done
+    cp $(pwd)/COPYING $DEST/COPYING
 fi
 
 # Navigate back to the top level directory

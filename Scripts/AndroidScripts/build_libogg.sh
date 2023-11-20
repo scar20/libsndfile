@@ -128,8 +128,8 @@ if [ "$GENERATE_PRECOMPILED_LIBS" = "ON" ]; then
             cp $ogg_root/$BUILD_DIR/lib/libogg.a $DEST/$BUILD_DIR/lib/libogg.a
             cp -r $ogg_root/$BUILD_DIR/include $DEST/$BUILD_DIR/include
         done
-        cp $(pwd)/COPYING $DEST/COPYING
     done
+    cp $(pwd)/COPYING $DEST/COPYING
 fi
 
 # Navigate back to the top level directory

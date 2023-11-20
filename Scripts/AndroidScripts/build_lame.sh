@@ -187,9 +187,9 @@ if [ "$GENERATE_PRECOMPILED_LIBS" = "ON" ]; then
             cp $lame_root/$BUILD_DIR/lib/libmp3lame.a $DEST/$BUILD_DIR/lib/libmp3lame.a
             cp -r $lame_root/$BUILD_DIR/include $DEST/$BUILD_DIR/include
         done
-        cp $(pwd)/COPYING $DEST/COPYING
-        cp $(pwd)/LICENSE $DEST/LICENSE
     done
+    cp $(pwd)/COPYING $DEST/COPYING
+    cp $(pwd)/LICENSE $DEST/LICENSE
 fi
 
 # Navigate back to the top level directory
