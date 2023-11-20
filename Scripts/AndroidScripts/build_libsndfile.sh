@@ -6,15 +6,18 @@
 # Place and run this script from within that top-level directory.
 # It will generate build directories for each ABI/configuration in libsndfile subdirectory.
 # An Android Studio 'AndroidStudio' directory structure will be produced in the top-level directory.
+# It will contain the headers and libs for each ABI/configuration and the testsuite archives
+# if testing is enabled.
 
 
 # ------- User configuration ------- #
 
-# set to your NDK root location : "path/to/android-ndk-your_version_number"
-ANDROID_NDK_HOME="/opt/android-ndk-r25c"
+# set to your NDK root location : "path/to/android-ndk-<your_version_number>"
+ANDROID_NDK_HOME=""
 
 # Minimum API level supported by the NDK - adjust according to your project min sdk
-api_min="android-21"
+# ex: API_MIN="android-21"
+api_min=""
 
 # Lists of ABIs and configurations
 # Adjust as needed from those values:
@@ -29,7 +32,7 @@ shared_lib=ON
 # set to ON to enable testsuite generation
 # The archive will be generated in the build_{abi} directory
 # or in the build_{abi}_testsuite directory if shared_lib=ON
-build_android_testing=ON
+build_android_testing=OFF
 
 # set to ON to perform the tests inlined with the build
 # If no device is connected or available, the tests will be skipped
