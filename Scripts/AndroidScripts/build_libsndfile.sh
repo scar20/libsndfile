@@ -13,6 +13,16 @@
 # set to your NDK root location : "path/to/android-ndk-your_version_number"
 ANDROID_NDK_HOME="/opt/android-ndk-r25c"
 
+# Minimum API level supported by the NDK - adjust according to your project min sdk
+api_min="android-21"
+
+# Lists of ABIs and configurations
+# Adjust as needed from those values:
+# abi_list=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
+# config_list=("Debug" "Release")
+abi_list=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
+config_list=("Debug" "Release")
+
 # set to OFF to build a static library
 shared_lib=ON
 
@@ -24,16 +34,6 @@ build_android_testing=ON
 # set to ON to perform the tests inlined with the build
 # If no device is connected or available, the tests will be skipped
 test_inline=ON
-
-# Lists of ABIs and configurations
-# Adjust as needed
-# abi_list=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
-# config_list=("Debug" "Release")
-abi_list=("armeabi-v7a" "arm64-v8a" "x86" "x86_64")
-config_list=("Debug" "Release")
-
-# Minimum API level supported by the NDK - adjust according to your project min sdk
-api_min="android-21"
 
 # Device path where the testsuite archive will be stored
 # This should not be changed, added here in case it needs to be changed in the future
@@ -81,17 +81,25 @@ EOF
 export ANDROID_NDK_HOME="$ANDROID_NDK_HOME"
 export PATH="$PATH:$ANDROID_NDK_HOME"
 
+# Check if ANDROID_NDK_HOME and api_min are set
+if [ -z "$ANDROID_NDK_HOME" ]; then
+	echo "Error: ANDROID_NDK_ROOT must be set"
+	exit 1
+elif [ -z "$api_min" ]; then
+	echo "Error: api_min must be set"
+	exit 1
+fi
+
 # We should be in the top-level dir where all the libraries are located
 ROOT_LOC=$(pwd)
 
-# The directory names for external libs must correspond to those below
 # Set all external libs root locations
-OGG_ROOT_PATH="${ROOT_LOC}/libogg"
-FLAC_ROOT_PATH="${ROOT_LOC}/flac"
-VORBIS_ROOT_PATH="${ROOT_LOC}/libvorbis"
-OPUS_ROOT_PATH="${ROOT_LOC}/opus"
-MPG123_ROOT_PATH="${ROOT_LOC}/mpg123"
-MP3LAME_ROOT_PATH="${ROOT_LOC}/lame"
+OGG_ROOT_PATH=$(echo ${ROOT_LOC}/libogg*)
+FLAC_ROOT_PATH=$(echo ${ROOT_LOC}/flac*)
+VORBIS_ROOT_PATH=$(echo ${ROOT_LOC}/libvorbis*)
+OPUS_ROOT_PATH=$(echo ${ROOT_LOC}/opus*)
+MPG123_ROOT_PATH=$(echo ${ROOT_LOC}/mpg123*)
+MP3LAME_ROOT_PATH=$(echo ${ROOT_LOC}/lame*)
 
 # Navigate to libsndfile library source directory
 cd "${ROOT_LOC}/libsndfile"
