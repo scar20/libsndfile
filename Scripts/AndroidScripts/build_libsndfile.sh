@@ -261,3 +261,6 @@ for abi in "${abi_list[@]}"; do
         cd ..
     done
 done
+
+# Copy license files to android studio directory
+cp -r "${ROOT_LOC}/libsndfile/COPYING" "${ROOT_LOC}/AndroidStudio/libs/libsndfile/"
