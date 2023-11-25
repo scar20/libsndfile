@@ -26,6 +26,8 @@ You can grab the source code using:
 
 For building for Android see [BuildingForAndroid][BuildingForAndroid].
 
+For building for Android with external Xiph libs and mpg support see [BuildingForAndroidWithExtLibs](/Scripts/AndroidScripts/Android_build_with_extlibs.md)
+
 There are currently two build systems: the traditional GNU autotool based one and
 modern CMake based build system. Use of the CMake build system is documented
 below.
