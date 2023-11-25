@@ -3,7 +3,7 @@
 
 # Initial set up
 
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.5)
 
 # Do not run this script if using MSVC compiler
 if (CMAKE_SYSTEM_NAME STREQUAL "Android" AND MSVC)
