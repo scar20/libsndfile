@@ -74,12 +74,14 @@ The libsndfile test suite for Android must be installed on a device or emulator.
     adb push -p <archive_name>.tar.gz /data/local/tmp
     adb shell
     cd /data/local/tmp
-    tar xvf <archive_name>.tar.gz
+    gzip -d <archive_name>.tar.gz
+    tar xvf <archive_name>.tar
     cd <archive_name>
-    sh ./test_wrapper.sh
+    sh ./test_wrapper.sh | tee ../tests_result
     cd ..
     rm -r <archive_name>*
     exit
+    adb pull /data/local/tmp/tests_result .
 
 The archive name is "libsndfile-testsuite-" followed by a triplet for each ABI:
 
