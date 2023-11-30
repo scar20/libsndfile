@@ -913,7 +913,7 @@ set_target_properties(${SNDFILE_TEST_TARGETS} PROPERTIES RUNTIME_OUTPUT_DIRECTOR
 
 # Add the test programs to the tarball
 add_custom_target(create_tarball
-	COMMAND tar "cvzf" "${ARCHIVE_NAME}.tar.gz" --transform "s,^,${ARCHIVE_NAME}/," ${TEST_PROGRAMS_LIST} "${CMAKE_INSTALL_LIBDIR}/libsndfile.a" "test_wrapper.sh"
+	COMMAND tar "cvzf" "${ARCHIVE_NAME}.tar.gz" --transform "s,^,${ARCHIVE_NAME}/," ${TEST_PROGRAMS_LIST} "test_wrapper.sh"
     COMMENT "Creating tarball for testsuite"
 )
 
